@@ -101,13 +101,31 @@ src="https://www.facebook.com/tr?id=985722164425425&ev=PageView&noscript=1"
     background: linear-gradient(90deg, var(--accent), var(--green));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero-small {
-    font-size: 16px; color: #ffffff; font-weight: 800;
-    margin: -6px 0 14px; letter-spacing: 0.3px;
+  .hero-price {
+    font-size: 42px; line-height: 1.05; font-weight: 900;
+    letter-spacing: -0.5px; margin: 2px 0 18px;
+    text-shadow: 0 2px 20px rgba(245,181,74,0.25);
+  }
+  .hero-price strong {
+    background: linear-gradient(90deg, #ffd98a, var(--gold));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 15px; font-weight: 700; color: #ffffff;
+    border: 1px solid rgba(245,181,74,0.40);
+    background: rgba(245,181,74,0.10);
+    padding: 9px 20px; border-radius: 999px; margin-bottom: 24px;
+    box-shadow: 0 4px 18px rgba(245,181,74,0.10);
   }
   .lede {
-    font-size: 20px; color: #ffffff; font-weight: 700; max-width: 640px;
-    margin: 0 auto 8px; line-height: 1.6;
+    font-size: 18px; color: var(--text); font-weight: 500; max-width: 620px;
+    margin: 0 auto 8px; line-height: 1.65;
+  }
+  .lede-hook {
+    display: block; font-size: 24px; font-weight: 800; color: #ffffff;
+    margin-bottom: 16px; letter-spacing: -0.2px;
   }
 
   /* Date badge */
@@ -211,7 +229,10 @@ src="https://www.facebook.com/tr?id=985722164425425&ev=PageView&noscript=1"
 
   @media (max-width: 640px) {
     h1 { font-size: 33px; }
-    .lede { font-size: 17px; }
+    .hero-price { font-size: 34px; }
+    .hero-badge { font-size: 13px; padding: 8px 16px; }
+    .lede { font-size: 16px; }
+    .lede-hook { font-size: 21px; }
     .hero { padding: 52px 0 48px; }
     section { padding: 56px 0; }
     h2 { font-size: 26px; }
@@ -239,10 +260,10 @@ src="https://www.facebook.com/tr?id=985722164425425&ev=PageView&noscript=1"
   <div class="container">
     <span class="eyebrow">⏳ נותרו <strong id="countdown">09:00</strong> דקות להרשמה לוובינר</span>
     <h1>חשיפה ראשונה: <span class="grad">פריסייל בתנאים שאסור לפספס</span></h1>
-    <p class="hero-small">רק 450,000 ש״ח</p>
-    <p class="hero-small">פרוייקט פריסייל סודי לפני שיווק בתנאים מטורפים</p>
+    <p class="hero-price">רק <strong>450,000 ש״ח</strong></p>
+    <span class="hero-badge">🔒 פרוייקט פריסייל סודי לפני שיווק בתנאים מטורפים</span>
     <p class="lede">
-      הזדמנויות כאלה לא מפספסים<br><br>
+      <span class="lede-hook">הזדמנויות כאלה לא מפספסים</span>
       הרשמו לוובינר שבו נחשוף את שאר התנאים ואת הפוטנציאל המטורף שיש באזור ההשקעה
     </p>
 
