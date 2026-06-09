@@ -218,19 +218,39 @@ src="https://www.facebook.com/tr?id=985722164425425&ev=PageView&noscript=1"
     function tick(){ el.textContent = p(Math.floor(r/60)) + ':' + p(r%60); if (r>0) r--; }
     tick(); setInterval(tick, 1000);
   })();
+  // טיפול בטפסי ההרשמה — שליחה ל-CRM (n8n webhook) ואז הפניה לדף תודה.
+  var CRM_WEBHOOK = 'https://n8n.srv1270696.hstgr.cloud/webhook/yehud-webinar-lead';
   document.querySelectorAll('.reg-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+      var redirect = form.getAttribute('data-redirect') || 'webinar-thank-you.html';
       var data = {
         name: form.querySelector('[name="name"]').value.trim(),
         email: form.querySelector('[name="email"]').value.trim(),
         phone: form.querySelector('[name="phone"]').value.trim(),
+        source: 'קמפיין יהוד',
+        responsible: 'רוסו',
+        lectureName: 'וובינר פריסייל יהוד 16.6',
+        variant: 'bold',
         ts: new Date().toISOString()
       };
-      try { localStorage.setItem('webinar_lead', JSON.stringify(data)); } catch (err) {}
-      window.location.href = form.getAttribute('data-redirect');
+      var go = function () { window.location.href = redirect; };
+      fetch(CRM_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(go).catch(function () {
+        try {
+          var pend = JSON.parse(localStorage.getItem('tb_leads_pending') || '[]');
+          pend.push(data); localStorage.setItem('tb_leads_pending', JSON.stringify(pend));
+        } catch (err) {}
+        go();
+      });
     });
   });
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
